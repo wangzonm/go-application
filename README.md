@@ -1,6 +1,9 @@
 # go-application
-my go-application
+my go-application (learning and using)
 
+## official_pkg
+Go official package source code learning
+ 
 ## pool
 ### Reference
 - https://github.com/Joker666/goworkerpool v0.0.0-20210517143140-c833b5b2cfff

@@ -18,7 +18,6 @@ func myFunc(i interface{}) {
 	}
 }
 
-
 func main() {
 	defer ants.Release()
 

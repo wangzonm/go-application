@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	MaxWorker = 100 //随便设置值
+	MaxWorker = 100 // 随便设置值
 	MaxQueue  = 200 // 随便设置值
 )
 

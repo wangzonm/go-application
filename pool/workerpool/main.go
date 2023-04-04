@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/gammazero/workerpool"
 	"time"
+
+	"github.com/gammazero/workerpool"
 )
 
 func main() {
