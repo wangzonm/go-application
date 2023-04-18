@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package server1;
+package serverserver;
 
-option go_package = "./proto;server1";
+option go_package = "./proto;serverserver";
 
-service Server1 {
+service ServerServer {
 	rpc Call(CallRequest) returns (CallResponse) {}
 	rpc ClientStream(stream ClientStreamRequest) returns (ClientStreamResponse) {}
 	rpc ServerStream(ServerStreamRequest) returns (stream ServerStreamResponse) {}

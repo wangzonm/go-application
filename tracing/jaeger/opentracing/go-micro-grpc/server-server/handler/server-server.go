@@ -7,18 +7,18 @@ import (
 
 	"go-micro.dev/v4/logger"
 
-	pb "server1/proto"
+	pb "opentracing/go-micro-grpc/server-server/proto"
 )
 
-type Server1 struct{}
+type ServerServer struct{}
 
-func (e *Server1) Call(ctx context.Context, req *pb.CallRequest, rsp *pb.CallResponse) error {
-	logger.Infof("Received Server1.Call request: %v", req)
+func (e *ServerServer) Call(ctx context.Context, req *pb.CallRequest, rsp *pb.CallResponse) error {
+	logger.Infof("Received ServerServer.Call request: %v", req)
 	rsp.Msg = "Hello " + req.Name
 	return nil
 }
 
-func (e *Server1) ClientStream(ctx context.Context, stream pb.Server1_ClientStreamStream) error {
+func (e *ServerServer) ClientStream(ctx context.Context, stream pb.ServerServer_ClientStreamStream) error {
 	var count int64
 	for {
 		req, err := stream.Recv()
@@ -34,8 +34,8 @@ func (e *Server1) ClientStream(ctx context.Context, stream pb.Server1_ClientStre
 	}
 }
 
-func (e *Server1) ServerStream(ctx context.Context, req *pb.ServerStreamRequest, stream pb.Server1_ServerStreamStream) error {
-	logger.Infof("Received Server1.ServerStream request: %v", req)
+func (e *ServerServer) ServerStream(ctx context.Context, req *pb.ServerStreamRequest, stream pb.ServerServer_ServerStreamStream) error {
+	logger.Infof("Received ServerServer.ServerStream request: %v", req)
 	for i := 0; i < int(req.Count); i++ {
 		logger.Infof("Sending %d", i)
 		if err := stream.Send(&pb.ServerStreamResponse{
@@ -48,7 +48,7 @@ func (e *Server1) ServerStream(ctx context.Context, req *pb.ServerStreamRequest,
 	return nil
 }
 
-func (e *Server1) BidiStream(ctx context.Context, stream pb.Server1_BidiStreamStream) error {
+func (e *ServerServer) BidiStream(ctx context.Context, stream pb.ServerServer_BidiStreamStream) error {
 	for {
 		req, err := stream.Recv()
 		if err == io.EOF {
