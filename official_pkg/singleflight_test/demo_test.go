@@ -23,10 +23,10 @@ func TestDemo(t *testing.T) {
 	for i := 0; i < groupNums; i++ {
 		go func(idx int) {
 			defer wg.Done()
+			time.Sleep(50 * time.Millisecond)
 			log.Println("groutine.no=", idx, " start to set")
 			v, _, shared := sf.Do(testKey, func() (interface{}, error) {
 				log.Println("groutine.no=", idx, " setting value")
-				// time.Sleep(50 * time.Millisecond)
 				log.Println("groutine.no=", idx, " set value success")
 				return "testValue", nil
 			})
