@@ -29,7 +29,7 @@ wget https://github.com/bnb-chain/bsc/releases/download/v1.0.7/geth_linux
 # 节点数据挂载目录
 mkdir data && cd data 
 
-创建并编写创世文件
+# 创建并编写创世文件
 touch genesis.json && vim genesis.json
 # {
 #   "config": {
@@ -65,9 +65,8 @@ touch genesis.json && vim genesis.json
 #   "parentHash":"0x0000000000000000000000000000000000000000000000000000000000000000"
 # }
 
-# 新建Docker容器启动脚本
-touch run.sh
-vi /private_bsc/data/run.sh
+# 新建并编写Docker容器启动脚本
+touch run.sh && vi /private_bsc/data/run.sh
 # #!/bin/bash
 # docker run -itd --restart=unless-stopped -v /etc/localtime:/etc/localtime --name node_bsc \
 #     -v $(pwd):/data \
@@ -75,12 +74,10 @@ vi /private_bsc/data/run.sh
 #     -v $(pwd)/../ethash:/root/.ethash \
 #     -p 30303:30303 -p 50777:50777 private_bsc:v1.0.7
 
-# 新建geth执行脚本
-touch start.sh
-vi /private_bsc/data/start.sh
-
-#!/bin/bash
-set -e
+# 新建并编写geth执行脚本
+touch start.sh && vi /private_bsc/data/start.sh
+# #!/bin/bash
+# set -e
 
 # # Init
 # echo ""
@@ -100,7 +97,7 @@ set -e
 
 
 # 生成节点镜像
-## 需要在与Dockerfile同一级目录下执行此命令
+# 需要在与Dockerfile同一级目录下执行此命令
 docker build . -t private_bsc:v1.0.7 
 
 # 启动节点容器
@@ -167,15 +164,13 @@ touch genesis.json && vim genesis.json
 #   "parentHash":"0x0000000000000000000000000000000000000000000000000000000000000000"
 # }
 
-# 新建Docker容器启动脚本
-touch run.sh
-vi /private_bsc1/data/run.sh
+# 新建并编写Docker容器启动脚本
+touch run.sh && vi /private_bsc1/data/run.sh
 # #!/bin/bash
 # docker run -itd --restart=unless-stopped -v /etc/localtime:/etc/localtime --name node_bsc1 -v $(pwd):/data -p 30304:30304 -p 51777:51777 private_bsc:v1.0.7
 
-# 新建geth执行脚本
-touch start.sh
-vi /private_bsc1/data/start.sh
+# 新建并编写geth执行脚本
+touch start.sh && vi /private_bsc1/data/start.sh
 # #!/bin/bash
 # set -e
 
@@ -207,7 +202,7 @@ sh /private_bsc1/data/run.sh
 # 节点目录
 mkdir private_bsc2 && cd private_bsc2
 
-# 编写编写Dockerfile文件 
+# 新建并编写Dockerfile文件 
 touch Dockerfile && vim Dockerfile
 # FROM buildpack-deps:jessie-curl
 # RUN mkdir /data
@@ -226,7 +221,7 @@ wget https://github.com/bnb-chain/bsc/releases/download/v1.0.7/geth_linux
 # 节点数据挂载目录
 mkdir data && cd data 
 
-## 创建编写创世文件
+# 创建编写创世文件
 touch genesis.json && vim genesis.json
 # {
 #   "config": {
@@ -339,14 +334,14 @@ docker exec -it node_bsc bash
 geth attach geth.ipc
 
 # 设置矿工地址
-miner.setEtherbase(eth.accounts[0])
+> miner.setEtherbase(eth.accounts[0])
 
 # 解锁矿工地址
-personal.unlockAccount(eth.coinbase,"passwd",0)
+> personal.unlockAccount(eth.coinbase,"passwd",0)
 
 # 开启挖矿
-miner.start(1)
+> miner.start(1)
 
 # 停止挖矿
-miner.stop()
+> miner.stop()
 ```
